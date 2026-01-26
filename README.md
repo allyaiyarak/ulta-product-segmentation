@@ -17,11 +17,12 @@ This analysis focuses on the subset where:
 Data fields used include: product category, price, rating, and number of ratings.
 
 > Source: https://www.kaggle.com/datasets/devi5723/e-commerce-cosmetics-dataset
+>
 > Note: Ratings were validated to be on a consistent **1–5 scale** prior to segmentation.
 
 ## Tools / Technologies
-- **SQL (SQLite)**: data cleaning, segmentation logic, aggregation
-- **Tableau Public**: dashboard + storytelling visuals
+- **SQL**: data cleaning, segmentation logic, aggregation
+- **Tableau**: dashboard 
 
 ## Segmentation Framework
 **Engagement** (proxy = number of ratings):
@@ -32,7 +33,7 @@ Data fields used include: product category, price, rating, and number of ratings
 
 **Satisfaction** (proxy = average rating):
 - High rating: `>= 4.0`
-- Medium rating: `3.0–3.9`
+- Medium rating: `>= 3.0`
 - Low rating: `< 3.0`
 - No rating: `NULL`
 
@@ -41,7 +42,7 @@ Data fields used include: product category, price, rating, and number of ratings
 2. **Validate data quality** (null checks, rating scale validation)
 3. **Engineer segmentation labels** (engagement_level, rating_level)
 4. **Build the segmentation matrix** (engagement × rating)
-5. **Category drill-down** to identify where opportunities/risks cluster
+5. **Category filter** to identify where opportunities/risks cluster
 6. **Dashboard build** in Tableau Public
 
 ## Key Results (Ulta US)
@@ -51,7 +52,7 @@ From the segmentation matrix:
 - **Brand risk:** a small number of high-engagement products with low ratings (needs review)
 
 ## Dashboard
-- Tableau Public: [paste your dashboard link]
+- Tableau Public: https://public.tableau.com/views/UltaBeautyUSProductPerformanceSegmentation/Dashboard1?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
 - Key visuals:
   - Engagement × Rating heatmap
   - Product distribution by engagement level
@@ -62,8 +63,4 @@ From the segmentation matrix:
 - `tableau/` — dashboard link + screenshots
 - `notes/` — assumptions & threshold rationale
 
-## How to Reproduce (Optional)
-1. Download the dataset from Kaggle (link above)
-2. Load into SQLite (DB Browser for SQLite)
-3. Run queries in `sql/` in order
-4. Export the final segmented table to CSV and connect in Tableau
+
