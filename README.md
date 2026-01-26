@@ -1,4 +1,3 @@
-# ulta-product-segmentation
 # Ulta US Product Performance Segmentation (SQL + Tableau)
 
 ## Objective
