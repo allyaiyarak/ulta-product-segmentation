@@ -11,12 +11,12 @@ assortment to identify:
 ## Dataset Used
 Cosmetics e-commerce dataset (scraped product listings across multiple retailers).  
 This analysis focuses on the subset where:
-- `website = 'https://www.kaggle.com/datasets/devi5723/e-commerce-cosmetics-dataset`
-- `country = 'United States'`
+- `website = 'Ulta`
+- `country = 'USA'`
 
 Data fields used include: product category, price, rating, and number of ratings.
 
-> Source: [Add Kaggle link here]  
+> Source: https://www.kaggle.com/datasets/devi5723/e-commerce-cosmetics-dataset
 > Note: Ratings were validated to be on a consistent **1–5 scale** prior to segmentation.
 
 ## Tools / Technologies
