@@ -1,1 +1,66 @@
 
+
+WITH ulta_us AS (
+  SELECT
+    product_name,
+    category,
+    price,
+    rating,
+    noofratings
+  FROM cosmetic
+  WHERE website = 'ulta'
+    AND country = 'USA'
+),
+
+segmented AS (
+  SELECT
+    product_name,
+    category,
+    price,
+    rating,
+    noofratings,
+    CASE
+      WHEN noofratings IS NULL OR noofratings = 0 THEN 'No engagement'
+      WHEN noofratings < 10 THEN 'Low engagement'
+      WHEN noofratings BETWEEN 10 AND 50 THEN 'Medium engagement'
+      ELSE 'High engagement'
+    END AS engagement_level,
+    CASE
+      WHEN rating IS NULL THEN 'No rating'
+      WHEN rating >= 4.0 THEN 'High rating'
+      WHEN rating >= 3.0 THEN 'Medium rating'
+      ELSE 'Low rating'
+    END AS rating_level
+  FROM ulta_us
+)
+
+
+(A) Overall engagement segment sizes
+
+SELECT
+  engagement_level,
+  COUNT(*) AS product_count
+FROM segmented
+GROUP BY engagement_level
+ORDER BY product_count DESC;
+
+
+(B) Engagement segment sizes by category
+
+SELECT
+  category,
+  engagement_level,
+  COUNT(*) AS product_count
+FROM segmented
+GROUP BY category, engagement_level
+ORDER BY category, product_count DESC;
+
+ (C) KEY RESULT: Engagement x Rating matrix
+
+SELECT
+  engagement_level,
+  rating_level,
+  COUNT(*) AS product_count
+FROM segmented
+GROUP BY engagement_level, rating_level
+ORDER BY engagement_level, product_count DESC;
