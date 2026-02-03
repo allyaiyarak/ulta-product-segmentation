@@ -1,1 +1,93 @@
+clean data:
+1) Total rows in the raw table
+SELECT COUNT(*) AS total_products
+FROM cosmetic;
 
+2) Select subset (ulta, USA)
+SELECT COUNT(*) AS ulta_us_products
+FROM cosmetic
+WHERE website = 'ulta'
+  AND country = 'USA';
+
+3) Quick preview of Ulta US rows
+SELECT
+  product_name,
+  category,
+  price,
+  rating,
+  noofratings
+FROM cosmetic
+WHERE website = 'ulta'
+  AND country = 'USA'
+LIMIT 10;
+
+4) Check missing values: rating and number of ratings
+SELECT
+  COUNT(*) AS total_products,
+  SUM(CASE WHEN rating IS NULL THEN 1 ELSE 0 END) AS null_ratings,
+  SUM(CASE WHEN noofratings IS NULL THEN 1 ELSE 0 END) AS null_noofratings
+FROM cosmetic
+WHERE website = 'ulta'
+  AND country = 'USA';
+
+5) Rating scale check (should be consistent 1–5)
+SELECT
+  MIN(rating) AS min_rating,
+  MAX(rating) AS max_rating,
+  AVG(rating) AS avg_rating
+FROM cosmetic
+WHERE website = 'ulta'
+  AND country = 'USA'
+  AND rating IS NOT NULL;
+
+segmentation:
+WITH ulta_us AS (
+  SELECT
+    product_name,
+    category,
+    price,
+    rating,
+    noofratings
+  FROM cosmetic
+  WHERE website = 'ulta'
+    AND country = 'USA'
+),
+
+segmented AS (
+  SELECT
+    product_name,
+    category,
+    price,
+    rating,
+    noofratings,
+
+    /* Engagement segmentation (proxy = number of ratings) */
+    CASE
+      WHEN noofratings IS NULL OR noofratings = 0 THEN 'No engagement'
+      WHEN noofratings < 10 THEN 'Low engagement'
+      WHEN noofratings BETWEEN 10 AND 50 THEN 'Medium engagement'
+      ELSE 'High engagement'
+    END AS engagement_level,
+
+    /* Satisfaction segmentation (proxy = average rating) */
+    CASE
+      WHEN rating IS NULL THEN 'No rating'
+      WHEN rating >= 4.0 THEN 'High rating'
+      WHEN rating >= 3.0 THEN 'Medium rating'
+      ELSE 'Low rating'
+    END AS rating_level
+
+  FROM ulta_us
+)
+
+Preview segmented rows (spot check that labels make sense)
+SELECT
+  product_name,
+  category,
+  price,
+  rating,
+  noofratings,
+  engagement_level,
+  rating_level
+FROM segmented
+LIMIT 25;
