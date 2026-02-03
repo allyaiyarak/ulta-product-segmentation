@@ -1,1 +1,46 @@
+Assumptions, Definitions, and Limitations
 
+Scope
+- This analysis focuses exclusively on products sold on **Ulta’s U.S. platform**.
+- The dataset was filtered to records where:
+  - `website = 'ulta'`
+  - `country = 'USA'`
+- Products from other retailers and regions were excluded to ensure insights
+  are specific and actionable for Ulta’s U.S. market.
+
+Metric Definitions
+
+1) Customer Engagement
+- Engagement is proxied by the **number of customer ratings** (`noofratings`).
+- A higher number of ratings is interpreted as greater customer interaction,
+  visibility, and exposure.
+
+2) Customer Satisfaction
+- Satisfaction is proxied by the **average product rating** on a **1–5 scale**.
+- Rating values were validated prior to analysis to confirm a consistent scale
+  across all products.
+
+Segmentation Thresholds
+
+Engagement Levels
+- **No engagement:** `NULL` or `0` ratings  
+- **Low engagement:** fewer than `10` ratings  
+- **Medium engagement:** `10–50` ratings  
+- **High engagement:** more than `50` ratings  
+
+Rating Levels
+- **High rating:** `≥ 4.0`  
+- **Medium rating:** `3.0–3.9`  
+- **Low rating:** `< 3.0`  
+- **No rating:** `NULL`  
+
+Thresholds align with common consumer interpretation of product ratings in
+beauty e-commerce, where scores above 4.0 typically indicate strong satisfaction.
+
+## Limitations
+- Ratings and review counts are used as **proxies** and do not directly measure
+  sales, conversion, or revenue.
+- Engagement levels may be influenced by product age, marketing exposure, or
+  platform visibility rather than intrinsic product quality.
+- Results represent a historical snapshot and may change as new reviews are added
+  or product assortments evolve.
