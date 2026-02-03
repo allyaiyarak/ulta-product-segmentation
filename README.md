@@ -45,7 +45,7 @@ Data fields used include: product category, price, rating, and number of ratings
 5. Category filter: to identify where opportunities/risks cluster
 6. Build Dashboard: in Tableau Public
 
-## Key Results (Ulta US)
+## Key Results 
 From the segmentation matrix:
 - **High engagement + High rating:** 2,285 products (core “hero” products)
 - **Hidden gems:** high-rated products with low/medium engagement (discoverability issue)
