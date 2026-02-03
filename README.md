@@ -38,17 +38,17 @@ Data fields used include: product category, price, rating, and number of ratings
 - No rating: `NULL`
 
 ## Project Workflow
-1. **Scope the business problem** to Ulta (US)
-2. **Validate data quality** (null checks, rating scale validation)
-3. **Engineer segmentation labels** (engagement_level, rating_level)
-4. **Build the segmentation matrix** (engagement × rating)
-5. **Category filter** to identify where opportunities/risks cluster
-6. **Dashboard build** in Tableau Public
+1. Scope the business problem: to Ulta (US)
+2. Validate data quality: (null checks, rating scale validation)
+3. Engineer segmentation labels: (engagement_level, rating_level)
+4. Build the segmentation matrix: (engagement × rating)
+5. Category filter: to identify where opportunities/risks cluster
+6. Build Dashboard: in Tableau Public
 
 ## Key Results (Ulta US)
 From the segmentation matrix:
-- **High engagement + High rating:** 2,285 products (core “hero” assortment)
-- **Hidden opportunity pool:** high-rated products with low/medium engagement (discoverability issue)
+- **High engagement + High rating:** 2,285 products (core “hero” products)
+- **Hidden gems:** high-rated products with low/medium engagement (discoverability issue)
 - **Brand risk:** a small number of high-engagement products with low ratings (needs review)
 
 ## Dashboard
